@@ -1,0 +1,53 @@
+html, body {
+  margin: 0;
+  padding: 0;
+
+}
+canvas {
+  display: block;
+  margin-left: 100px;
+  margin-top: 20px;
+  min-width: 990px;
+  max-width: 991px;
+  max-height: 660px;
+  min-height: 659px;
+  position: fixed;
+  overflow: hidden;
+}
+#backArrow {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 2;
+}
+#nature {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+
+#iphone {
+  margin-left: 25%;
+}
+
+#phoneVid {
+  position: absolute;
+  margin-top: 5.5%;
+  margin-left: 26.6%;
+  z-index: 2;
+}
+
+#gameOver {
+  position: absolute;
+  margin-top: -10%;
+  margin-left: 43%;
+  z-index: 5;
+}
+
+#end {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 3;
+}
