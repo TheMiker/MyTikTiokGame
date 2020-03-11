@@ -16,13 +16,40 @@ var mainScript = 0;
 var plant_button;
 var planted = 0;
 var sapling;
-var google =0;
+var google = 0;
+var rain = [];
+var isRaining = false;
 // US physicist Alex Wissner-Gross claims that a typical Google search on a desktop computer produces about 7g CO2
 // 2.2679619 grams of co2 are absorbed by a tree per hour
 
 function reversePoll(){
   scene_index = scene_index - 0.00062998941;
 }
+
+
+function Rain(x, y) {
+  this.x = x;
+  this.y = y;
+  this.length = 15;
+  this.r = 0;
+  this.opacity = 200;
+
+
+  this.dropRain = function() {
+    noStroke();
+    fill(150,150,255);
+    ellipse(this.x, this.y, 3, this.length);
+    this.y = this.y + 6;
+    if (this.y > 540) {
+      this.length = this.length - 5;
+      
+    }
+    if (this.length < 0) {
+      this.length = 0;
+    }
+  }
+}
+
 
 
 function createScenes(){
@@ -64,7 +91,11 @@ function preload() {
 }
 function googleEmissions(){
   google = google +  63419.5839583;
-  console.log(google);
+  if(Math.round(google) % 2 == 0){
+    for (i = 0; i < 100; i++) {
+      rain[i] = new Rain(random(0, 1250), random(0, -3000));
+    }
+  }
 }
 
 function setup() {
@@ -80,6 +111,9 @@ function setup() {
   createDoorButton();
   createDoorButtonOutside();
   createPlantButton();
+  for (i = 0; i < 1000; i++) {
+    rain[i] = new Rain(random(0, 1250), random(0, -3000));
+  }
 }
 
 function createBackButton(){
@@ -405,10 +439,15 @@ function draw() {
     movementOutside();
     openDoorOutside();
     plantSapling();
+    for (i = 0; i < rain.length; i++) {
+      rain[i].dropRain();
+    }
+
     if(planted == 1){
       image(sapling, 800, 370, 80,80);
     }
   }
+
   var c = color(200, 50, 25); 
   fill(c); 
   rect(10, 650, 400, 20);
